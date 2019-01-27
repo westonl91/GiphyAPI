@@ -1,7 +1,11 @@
 //HW 6
 
+$( document ).ready(function() {
+    addButtonClickHandlers();
+});
 
-$(document).on("click", function () {
+function addButtonClickHandlers() {
+
     $("button").on("click", function () {
         var animal = $(this).attr("data-animal");
         console.log(animal);
@@ -36,8 +40,14 @@ $(document).on("click", function () {
 
             }
 
+            addGifClickHandler();
+
         });
     });
+}
+
+function addGifClickHandler() {
+    
     $(".gif").on("click", function () {
 
         var state = $(this).attr("data-state");
@@ -53,9 +63,7 @@ $(document).on("click", function () {
 
     });
 
-});
-
-
+}
 
 $("#add-animal").on("click", function (event) {
     event.preventDefault();
@@ -71,5 +79,7 @@ $("#add-animal").on("click", function (event) {
     $("#buttons").append(a);
     // Clear the textbox when done
     $("#anyInput").val("");
+
+    addButtonClickHandlers();
 });
 
