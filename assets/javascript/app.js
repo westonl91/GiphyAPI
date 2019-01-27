@@ -25,7 +25,11 @@ $(document).on("click", function () {
                 var p = $("<p>");
                 p.text(results[i].rating);
                 var animalImage = $("<img>");
-                animalImage.attr("src", results[i].images.fixed_height.url);
+                animalImage.attr("src", results[i].images.fixed_height_still.url);
+                animalImage.attr("data-still", results[i].images.fixed_height_still.url);
+                animalImage.attr("data-animate", results[i].images.fixed_height.url);
+                animalImage.attr("data-state", "still");
+                animalImage.attr("class", "gif");
                 animalDiv.append(p);
                 animalDiv.append(animalImage);
                 $("#gifs").prepend(animalDiv);
@@ -34,6 +38,21 @@ $(document).on("click", function () {
 
         });
     });
+    $(".gif").on("click", function () {
+
+        var state = $(this).attr("data-state");
+
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animate");
+        } else if (state === "animate") {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+
+        }
+
+    });
+
 });
 
 
@@ -53,3 +72,4 @@ $("#add-animal").on("click", function (event) {
     // Clear the textbox when done
     $("#anyInput").val("");
 });
+
