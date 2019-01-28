@@ -26,18 +26,16 @@ function addButtonClickHandlers() {
             for (var i = 0; i < results.length; i++) {
 
                 var animalDiv = $("<div>");
-                var p = $("<p>");
-                p.text(results[i].rating);
+                var p = "Rating: " + results[i].rating;
                 var animalImage = $("<img>");
                 animalImage.attr("src", results[i].images.fixed_height_still.url);
                 animalImage.attr("data-still", results[i].images.fixed_height_still.url);
                 animalImage.attr("data-animate", results[i].images.fixed_height.url);
                 animalImage.attr("data-state", "still");
                 animalImage.attr("class", "gif");
-                animalDiv.append(p);
+                animalImage.attr("title", p);
                 animalDiv.append(animalImage);
                 $("#gifs").prepend(animalDiv);
-
             }
 
             addGifClickHandler();
